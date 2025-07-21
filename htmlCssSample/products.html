@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品紹介 - あなたのサイトタイトル</title>
+
+<style>
+    body {
+        font-family: sans-serif; /* ページ全体のフォントを一般的なサンセリフ体（ゴシック体）に設定します。 */
+        margin: 0; /* body要素のデフォルトマージン（外側の余白）を0にリセットします。 */
+        background-color: #f4f4f4; /* ページ全体の背景色を薄い灰色に設定します。 */
+    }
+
+    /* ヘッダーのスタイル */
+    .site-header {
+        background-color: #333; /* ヘッダーの背景色を濃い灰色に設定します。 */
+        color: white; /* ヘッダー内のテキスト色を白に設定します。 */
+        padding: 15px 20px 0; /* ヘッダーの内側の余白（パディング）を上15px、左右20px、下0pxに設定します。 */
+        text-align: center; /* ヘッダー内のテキストを中央揃えに設定します。 */
+        border-bottom: 5px solid #007bff; /* ヘッダーの下部に5px幅の青い実線ボーダーを設定します（ヘッダーラインとして機能）。 */
+    }
+
+    .site-header h1 {
+        margin: 0 0 15px 0; /* h1要素のマージンを上0px、左右0px、下15pxに設定します（デフォルトマージンをリセットしつつ、下部にスペースを作成）。 */
+        font-size: 28px; /* サイトタイトルのフォントサイズを28pxに設定します。 */
+    }
+
+    /* ナビゲーションメニューのスタイル */
+    .main-nav ul {
+        list-style: none; /* リストの先頭に表示されるマーカー（点など）を非表示にします。 */
+        padding: 0; /* リストのデフォルトパディング（内側の余白）を0にリセットします。 */
+        margin: 0; /* リストのデフォルトマージン（外側の余白）を0にリセットします。 */
+        display: flex; /* Flexboxレイアウトを適用し、子要素（li）を横並びに配置します。 */
+        justify-content: center; /* Flexboxアイテム（li）を主軸（横方向）の中央に揃えます。 */
+        background-color: #444; /* ナビゲーションバーの背景色を少し濃い灰色に設定します。 */
+    }
+
+    .main-nav li {
+        margin: 0 15px; /* 各ナビゲーション項目（li）の左右に15pxのマージンを設定します。 */
+    }
+
+    .main-nav a {
+        display: block; /* リンクをブロックレベル要素として表示し、パディング領域全体をクリック可能にします。 */
+        color: white; /* リンクのテキスト色を白に設定します。 */
+        text-decoration: none; /* リンクのデフォルトの下線を非表示にします。 */
+        padding: 10px 0; /* リンクの内側の余白（パディング）を上下10px、左右0pxに設定します。 */
+        transition: color 0.3s ease; /* 色の変化に0.3秒の滑らかなトランジション効果を適用します。 */
+    }
+
+    .main-nav a:hover {
+        color: #007bff; /* マウスホバー時にリンクのテキスト色を青色に変更します。 */
+    }
+
+    /* メインコンテンツのコンテナ */
+    .main-content-container {
+        background-color: #ffffff; /* コンテナの背景色を白に設定します。 */
+        padding: 30px; /* 内側の余白（パディング）を上下左右30pxに設定します。 */
+        border-radius: 8px; /* 角を丸くする（半径8px） */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ボックスの影を設定します（X軸オフセット0、Y軸オフセット4px、ぼかし8px、色を黒の透明度10%）。 */
+        max-width: 1000px; /* コンテナの最大幅を1000pxに設定します（テーブル全体の最大幅を制限）。 */
+        margin: 30px auto; /* 上下のマージンを30px、左右のマージンを自動に設定し、ブロック要素を水平中央に配置します。 */
+        text-align: center; /* コンテナ内のテキストを中央揃えに設定します（必要に応じて、子要素で上書き可能）。 */
+    }
+
+    h2 {
+        color: #333; /* h2見出しのテキスト色を濃い灰色に設定します。 */
+        margin-bottom: 25px; /* h2見出しの下側の外側の余白（マージン）を25pxに設定します。 */
+    }
+
+    /* 商品テーブルのスタイル */
+    .product-table {
+        width: 100%; /* 親要素の幅いっぱいに広げます。 */
+        border-collapse: collapse; /* セルの境界線を結合し、単一の線として表示します。 */
+        margin-top: 20px; /* テーブル上部の外側の余白（マージン）を20pxに設定します。 */
+        text-align: left; /* テーブル内のテキストを左揃えにリセットします（親要素の中央揃えを上書き）。 */
+    }
+
+    .product-table th, /* テーブルヘッダーセルと */
+    .product-table td { /* テーブルデータセルに適用 */
+        border: 1px solid #ddd; /* 1px幅の実線で薄い灰色の境界線を設定します。 */
+        padding: 12px; /* セルの内側に12pxの余白（パディング）を設定します。 */
+    }
+
+    .product-table th {
+        background-color: #007bff; /* テーブルヘッダーの背景色を青色に設定します。 */
+        color: white; /* テーブルヘッダーの文字色を白に設定します。 */
+        text-align: center; /* テーブルヘッダーのテキストを中央揃えに設定します。 */
+    }
+
+    .product-table td {
+        vertical-align: middle; /* セル内のコンテンツを垂直方向の中央に配置します。 */
+    }
+
+    .product-table tr:nth-child(even) {
+        background-color: #f2f2f2; /* 偶数行の背景色を薄い灰色に設定します（ゼブラストライプ効果）。 */
+    }
+
+    .product-table tr:hover {
+        background-color: #e9e9e9; /* マウスホバー時に行の背景色を少し濃い灰色に変更します。 */
+    }
+
+    .product-image {
+        max-width: 100px; /* 画像の最大幅を100pxに制限します。 */
+        height: auto; /* 画像の高さを自動調整し、アスペクト比を維持します。 */
+        display: block; /* 画像をブロック要素として表示し、`margin: auto;`が機能するようにします。 */
+        margin: 0 auto; /* 画像をセル内で水平方向の中央に配置します。 */
+    }
+</style>
+
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>サイトタイトル</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="products.html">商品紹介</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content-container">
+        <h2>商品紹介</h2>
+
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>商品ID</th>
+                    <th>商品名</th>
+                    <th>メーカー名</th>
+                    <th>商品画像</th>
+                    <th>商品説明</th>
+                    <th>税込価格</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>P001</td>
+                    <td>プレミアムコーヒー豆</td>
+                    <td>ABCコーヒー</td>
+                    <td><img src="https://via.placeholder.com/100x100?text=Coffee" alt="プレミアムコーヒー豆" class="product-image"></td>
+                    <td>厳選されたアラビカ豆を使用した、香り豊かなブレンドコーヒーです。毎日のリラックスタイムに。</td>
+                    <td>¥1,500</td>
+                </tr>
+                <tr>
+                    <td>P002</td>
+                    <td>スマートウォッチX</td>
+                    <td>XYZテック</td>
+                    <td><img src="https://via.placeholder.com/100x100?text=SmartWatch" alt="スマートウォッチX" class="product-image"></td>
+                    <td>最新の健康トラッキング機能を搭載したスタイリッシュなスマートウォッチ。</td>
+                    <td>¥29,800</td>
+                </tr>
+                <tr>
+                    <td>P003</td>
+                    <td>オーガニック野菜セット</td>
+                    <td>フレッシュファーム</td>
+                    <td><img src="https://via.placeholder.com/100x100?text=Vegetables" alt="オーガニック野菜セット" class="product-image"></td>
+                    <td>地元で採れた旬のオーガニック野菜を詰め合わせました。新鮮でおいしいです。</td>
+                    <td>¥2,800</td>
+                </tr>
+                <tr>
+                    <td>P004</td>
+                    <td>高音質ワイヤレスイヤホン</td>
+                    <td>サウンドリンク</td>
+                    <td><img src="https://via.placeholder.com/100x100?text=Earphones" alt="高音質ワイヤレスイヤホン" class="product-image"></td>
+                    <td>迫力のあるサウンドと快適な装着感を実現したワイヤレスイヤホン。通勤・通学に最適。</td>
+                    <td>¥8,990</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

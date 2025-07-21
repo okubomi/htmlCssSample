@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あなたのサイトタイトル</title>
+    
+    <!-- 以下はデザイン指定部分（CSS） -->
+<style>
+    body {
+        font-family: sans-serif; /* ページ全体のフォントを一般的なサンセリフ体（ゴシック体）に設定します。 */
+        margin: 0; /* body要素のデフォルトマージン（外側の余白）を0にリセットします。 */
+        /* background-color: #f4f4f4; を追加すると、ページ全体の背景色が薄い灰色になります。 */
+    }
+
+    /* ヘッダーのスタイル */
+    .site-header {
+        background-color: #333; /* ヘッダーの背景色を濃い灰色に設定します。 */
+        color: white; /* ヘッダー内のテキスト色を白に設定します。 */
+        padding: 15px 20px 0; /* ヘッダーの内側の余白（パディング）を上15px、左右20px、下0pxに設定します。 */
+        text-align: center; /* ヘッダー内のテキストを中央揃えに設定します。 */
+        border-bottom: 5px solid #007bff; /* ヘッダーの下部に5px幅の青い実線ボーダーを設定します（ヘッダーラインとして機能）。 */
+    }
+
+    .site-header h1 {
+        margin: 0 0 15px 0; /* h1要素のマージンを上0px、左右0px、下15pxに設定します（デフォルトマージンをリセットしつつ、下部にスペースを作成）。 */
+        font-size: 28px; /* サイトタイトルのフォントサイズを28pxに設定します。 */
+    }
+
+    /* ナビゲーションメニューのスタイル */
+    .main-nav ul {
+        list-style: none; /* リストの先頭に表示されるマーカー（点など）を非表示にします。 */
+        padding: 0; /* リストのデフォルトパディング（内側の余白）を0にリセットします。 */
+        margin: 0; /* リストのデフォルトマージン（外側の余白）を0にリセットします。 */
+        display: flex; /* Flexboxレイアウトを適用し、子要素（li）を横並びに配置します。 */
+        justify-content: center; /* Flexboxアイテム（li）を主軸（横方向）の中央に揃えます。 */
+        background-color: #444; /* ナビゲーションバーの背景色を少し濃い灰色に設定します。 */
+    }
+
+    .main-nav li {
+        margin: 0 15px; /* 各ナビゲーション項目（li）の左右に15pxのマージンを設定します。 */
+    }
+
+    .main-nav a {
+        display: block; /* リンクをブロックレベル要素として表示し、パディング領域全体をクリック可能にします。 */
+        color: white; /* リンクのテキスト色を白に設定します。 */
+        text-decoration: none; /* リンクのデフォルトの下線を非表示にします。 */
+        padding: 10px 0; /* リンクの内側の余白（パディング）を上下10px、左右0pxに設定します。 */
+        transition: color 0.3s ease; /* 色の変化に0.3秒の滑らかなトランジション効果を適用します。 */
+    }
+
+    .main-nav a:hover {
+        color: #007bff; /* マウスホバー時にリンクのテキスト色を青色に変更します。 */
+    }
+
+    /* フォームのセンタリングなど、その他のスタイルは以前のまま */
+    .form-container {
+        width: 400px; /* フォームコンテナの幅を400pxに固定します。 */
+        margin: 50px auto; /* 上下のマージンを50px、左右のマージンを自動に設定し、ブロック要素を水平中央に配置します。 */
+        background-color: #fff; /* 背景色を白に設定します。 */
+        padding: 20px; /* 内側の余白（パディング）を上下左右20pxに設定します。 */
+        border: 1px solid #ccc; /* 1px幅の実線で薄い灰色の境界線を設定します。 */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* ボックスの影を設定します（X軸オフセット0、Y軸オフセット2px、ぼかし5px、色を黒の透明度10%）。 */
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* 各入力グループの下側に15pxの外側の余白（マージン）を設定します。 */
+    }
+
+    label {
+        display: block; /* ラベルをブロック要素として表示し、前後に改行を入れるようにします。 */
+        margin-bottom: 5px; /* ラベルの下側に5pxの外側の余白（マージン）を設定します。 */
+    }
+
+    input[type="text"], /* テキスト入力フィールドと */
+    input[type="password"], /* パスワード入力フィールドと */
+    textarea { /* テキストエリアに適用 */
+        width: calc(100% - 22px); /* 幅を親要素の100%から左右のパディング（10px*2=20px）と左右のボーダー（1px*2=2px）の合計22pxを引いた値に設定します。 */
+        padding: 10px; /* 内側の余白（パディング）を上下左右10pxに設定します。 */
+        border: 1px solid #ddd; /* 1px幅の実線で薄い灰色の境界線を設定します。 */
+        border-radius: 4px; /* 角を4pxの半径で丸くします。 */
+    }
+
+    button {
+        width: 100%; /* ボタンの幅を親要素の100%に設定します（親要素いっぱいに広げます）。 */
+        padding: 10px; /* 内側の余白（パディング）を上下左右10pxに設定します。 */
+        background-color: #007bff; /* ボタンの背景色を青色に設定します。 */
+        color: white; /* ボタンの文字色を白に設定します。 */
+        border: none; /* ボタンの境界線をなくします。 */
+        border-radius: 4px; /* 角を4pxの半径で丸くします。 */
+        cursor: pointer; /* マウスカーソルをポインター（手の形）に変更します。 */
+    }
+
+    button:hover {
+        background-color: #0056b3; /* マウスホバー時にボタンの背景色を少し濃い青色に変更します。 */
+    }
+</style>
+
+</head>
+
+<!-- 以下は画面表示部分 -->
+<body>
+
+    <header class="site-header">
+        <h1>サイトタイトル</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="products.html">商品紹介</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        </header>
+
+    <div class="form-container">
+        <h2>お問い合わせ</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">お名前:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">メールアドレス:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">メッセージ:</label>
+                <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit">送信</button>
+        </form>
+    </div>
+
+</body>
+</html>
